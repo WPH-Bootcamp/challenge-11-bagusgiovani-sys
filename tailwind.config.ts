@@ -1,5 +1,14 @@
 import type { Config } from "tailwindcss";
 
+// Generate 1:1 spacing ratio (0-1000px)
+const generateSpacing = () => {
+  const spacing: Record<string, string> = {};
+  for (let i = 0; i <= 1000; i++) {
+    spacing[i.toString()] = `${i}px`;
+  }
+  return spacing;
+};
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,10 +17,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      spacing: {
-        // Custom spacing with 1px ratio (1:1 instead of 1:4)
-        // p-1 = 1px, p-4 = 4px, p-16 = 16px
-      },
+      spacing: generateSpacing(),
       typography: {
         // Extended typography classes
         "display-2xl-bold": {
